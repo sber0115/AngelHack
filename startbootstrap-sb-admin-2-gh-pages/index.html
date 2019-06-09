@@ -20,7 +20,40 @@
 
 </head>
 
-<body id="page-top">
+<body class="modal-open" id="page-top" >
+
+  
+  
+
+    <div class="modal fade" id="modalForm">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header text-center">
+              <h4 class="modal-title w-100 font-weight-bold">Join Channel</h4>
+              <button type="button" class="close" data-dismiss="modal">
+                <span>&times;</span>
+              </button>
+            </div>
+            <div class="modal-body mx-3">
+              <div class="md-form mb-5">
+                <input type="text" id="form-appid" class="form-control">
+                <label for="form-appid">GetherBook ID</label>
+              </div>
+      
+              <div class="md-form mb-4">
+                <input type="text" id="form-channel" class="form-control">
+                <label for="form-channel">Channel</label>
+              </div>
+      
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+              <button id="join-channel" class="btn btn-default">Join Channel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
   <!-- Page Wrapper -->
   <div id="wrapper">
@@ -174,47 +207,25 @@
 
       <!-- Main Content -->
       <div id="content">
-        
-
-        <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-   
-
-          <!-- Sidebar Toggle (Topbar) -->
-          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i class="fa fa-bars"></i>
-          </button>
-
-          <!-- Topbar Navbar -->
-          <ul class="navbar-nav ml-auto">
-
-            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-            <li class="nav-item dropdown no-arrow d-sm-none">
-              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-search fa-fw"></i>
-              </a>
-              <!-- Dropdown - Messages -->
-              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                <form class="form-inline mr-auto w-100 navbar-search">
-                  <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                      <button class="btn btn-primary" type="button">
-                        <i class="fas fa-search fa-sm"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </li>
-
-        </nav>
-        <!-- End of Topbar -->
-
         <!-- Begin Page Content -->
-      
+        <h1>test</h1>
+        <div id="lower-video-bar" class="row mb-1">
+          <div id="remote-streams-container" class="container col-9 ml-1">
+            <div id="remote-streams" class="row">
+              <!-- insert remote streams dynamically -->
+            </div>
+          </div>
+          <div id="local-stream-container" class="col p-0">
+            <div id="mute-overlay" class="col">
+              <i id="mic-icon" class="fas fa-microphone-slash"></i>
+            </div>
+            <div id="no-local-video" class="col text-center">
+              <i id="user-icon" class="fas fa-user"></i>
+            </div>
+            <div id="local-video" class="col p-0"></div>
+          </div>
+        </div>
       <!-- End of Main Content -->
-
       <!-- Footer -->
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
@@ -266,11 +277,25 @@
   <script src="js/sb-admin-2.min.js"></script>
 
   <!-- Page level plugins -->
-  <script src="vendor/chart.js/Chart.min.js"></script>
+  <!-- <script src="vendor/chart.js/Chart.min.js"></script> -->
 
   <!-- Page level custom scripts -->
-  <script src="js/demo/chart-area-demo.js"></script>
-  <script src="js/demo/chart-pie-demo.js"></script>
+  <!-- <script src="js/demo/chart-area-demo.js"></script> -->
+  <!-- <script src="js/demo/chart-pie-demo.js"></script> -->
+
+  <script src="https://cdn.agora.io/sdk/web/AgoraRTCSDK-2.6.0.js"></script>
+	<link rel="stylesheet" href="http://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+	<link href="http://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="http://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+  <script src="ui.js"></script>
+	<script src="agora-interface.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css"/>
+  
+<script>$("#modalForm").modal("show");</script>
+
+
+
 
 </body>
 
