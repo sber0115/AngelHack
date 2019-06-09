@@ -17,10 +17,9 @@
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
 </head>
 
-<body id="page-top">
+<body id="page-top" onload="init()">
 
   <!-- Page Wrapper -->
   <div id="wrapper">
@@ -87,7 +86,7 @@
             <meta name="viewport" content="width=device-width, initial-scale=2">
             <style>
             body {font-family: Franklin Gothic Medium }
-            
+
             /* Style the tab */
             .tab {
               text-align: center;
@@ -95,7 +94,7 @@
               border: 1px solid rgb(23, 4, 187);
               background-color: rgb(55, 62, 158);
             }
-            
+
             /* Style the buttons inside the tab */
             .tab button {
               background-color: inherit;
@@ -106,19 +105,19 @@
               padding: 14px 16px;
               transition: 0.2s;
               font-size: 17px;
-              
+
             }
-            
+
             /* Change background color of buttons on hover */
             .tab button:hover {
               background-color: rgba(72, 126, 197, 0.603);
             }
-            
+
             /* Create an active/current tablink class */
             .tab button.active {
               background-color: rgb(49, 207, 155);
             }
-            
+
             /* Style the tab content */
             .tabcontent {
               display: none;
@@ -129,27 +128,27 @@
             </style>
             </head>
             <body>
-            
+
             <div class="tab">
               <button class="tablinks" onclick="openCity(event, 'Page 1')" style="color:rgb(255, 255, 255);">Page 1</button>
               <button class="tablinks" onclick="openCity(event, 'Page 2')" style="color:rgb(255, 255, 255);">Page 2</button>
               <button class="tablinks" onclick="openCity(event, 'Page 3')" style="color:rgb(255, 255, 255);">Page 3</button>
             </div>
-            
+
             <div id="Page 1" class="tabcontent">
-              
+
             </div>
-            
+
             <div id="Page 2" class="tabcontent">
               <h3>Page 2</h3>
-              <p>Notes for page 2</p> 
+              <p>Notes for page 2</p>
             </div>
-            
+
             <div id="Page 3" class="tabcontent">
               <h3>Page 3</h3>
               <p>Notes for page 3</p>
             </div>
-            
+
             <script>
             function openCity(evt, cityName) {
               var i, tabcontent, tablinks;
@@ -163,68 +162,82 @@
               }
               document.getElementById(cityName).style.display = "block";
               evt.currentTarget.className += " active";
-              
+
             }
             </script>
-            
-                
+
+
             </body>
-            </html> 
-            
+            </html>
+
 
       <!-- Main Content -->
       <div id="content">
-        
-
-        <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-   
-
-          <!-- Sidebar Toggle (Topbar) -->
-          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-            <i class="fa fa-bars"></i>
-          </button>
-
-          <!-- Topbar Navbar -->
-          <ul class="navbar-nav ml-auto">
-
-            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-            <li class="nav-item dropdown no-arrow d-sm-none">
-              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-search fa-fw"></i>
-              </a>
-              <!-- Dropdown - Messages -->
-              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                <form class="form-inline mr-auto w-100 navbar-search">
-                  <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                      <button class="btn btn-primary" type="button">
-                        <i class="fas fa-search fa-sm"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </li>
-
-        </nav>
-        <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-      
+        <html>
+          <head>
+            <!-- Firebase -->
+            <script src="https://www.gstatic.com/firebasejs/5.5.4/firebase.js"></script>
+
+            <!-- CodeMirror -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.17.0/codemirror.css" />
+
+            <!-- Firepad -->
+            <link rel="stylesheet" href="https://cdn.firebase.com/libs/firepad/1.4.0/firepad.css" />
+            <script src="https://cdn.firebase.com/libs/firepad/1.4.0/firepad.min.js"></script>
+            <style>
+              #firepad {
+                width: 100%;
+                height: 700px;
+              }
+            </style>
+          </head>
+
+          <body onload="init()">
+            <div id="firepad"></div>
+            <script>
+              function init() {
+                // Initialize Firebase.
+                // TODO: replace with your Firebase project configuration.
+                var config = {
+                  apiKey: "AIzaSyB_E9Sb3UHLQiDnMyG05qHi-chZbMk17EM",
+                  databaseURL: "https://angelhack.firebaseio.com"
+                };
+                firebase.initializeApp(config);
+
+                // Get Firebase Database reference.
+                var firepadRef = firebase.database().ref();
+
+                // Create CodeMirror (with lineWrapping on).
+                var codeMirror = CodeMirror(document.getElementById('firepad'), { lineWrapping: true });
+
+                // Create Firepad (with rich text toolbar and shortcuts enabled).
+                var firepad = Firepad.fromCodeMirror(firepadRef, codeMirror, {
+                  richTextShortcuts: true,
+                  richTextToolbar: true,
+                  defaultText: 'Hello, World!'
+                });
+              }
+
+              function getExampleRef() {
+                  var ref = new Firebase("https://angelhack.firebaseio.com");
+                  var hash = window.location.hash.replace(/#/g, '');
+                  if (hash) {
+                    ref = ref.child(hash);
+                  } else {
+                    ref = ref.push();
+                    window.location = window.location + '#' + ref.key(); // add it as a hash to the URL.
+                  }
+                  return ref;
+                }
+                init();
+            </script>
+          </body>
+        </html>
+
       <!-- End of Main Content -->
-
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright &copy; GetherBook 2019</span>
-          </div>
-        </div>
-      </footer>
-      <!-- End of Footer -->
-
     </div>
     <!-- End of Content Wrapper -->
 
