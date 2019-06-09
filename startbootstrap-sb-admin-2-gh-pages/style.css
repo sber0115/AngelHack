@@ -22,6 +22,7 @@
   
   .remote-stream-container { 
     display: inline-block;
+    align:center;
   }
   
   #remote-streams {
